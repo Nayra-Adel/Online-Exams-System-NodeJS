@@ -1,10 +1,34 @@
 <html>  
+	<head>
+		<title>Register</title>
+		<meta charset="UTF-8">
+	</head>
 	<body>  
-		<form action="/controllers/register-controller" method="POST">  
+		<form name = "register-form" action="/controllers/register-controller" method="POST" onsubmit="return validateForm()">  
 			Name: <input type="text" name="name">
 			Email: <input type="text" name="email">
 			Password: <input type="password" name="password">
-			<input type="submit" value="Submit">  
+			<input type="submit" value="Submit">
 		</form>
+
+		<script>
+			function validateForm() {
+			  var name = document.forms["register-form"]["name"].value;
+			  var email = document.forms["register-form"]["email"].value;
+			  var password = document.forms["register-form"]["password"].value;
+			  if (name == "") {
+			    alert("Name must be filled out");
+			    return false;
+			  }
+			  if (email == "") {
+			    alert("Email must be filled out");
+			    return false;
+			  }
+			  if (password == "") {
+			    alert("Password must be filled out");
+			    return false;
+			  }
+			}
+		</script>
 	</body>  	
 </html>  
