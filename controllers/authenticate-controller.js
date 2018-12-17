@@ -5,7 +5,7 @@ module.exports.authenticate=function(req,res){
     var email=req.body.email;
     var password=req.body.password;
       
-    connection.query('SELECT * FROM users WHERE email = ?',[email], function (error, results) {
+    connection.query('SELECT * FROM user WHERE email = ?',[email], function (error, results) {
       if (error) {
           res.json({
             status:false,
@@ -15,10 +15,10 @@ module.exports.authenticate=function(req,res){
       else{
         if(results.length >0){
             if(password == results[0].password){
-                res.json({
-                    status:true,
-                    message:'successfully authenticated'
-                })
+              if(results[0].type == "hr")
+                res.redirect('/hr.html');
+              else
+                res.redirect('/user.html');
             }
             else{
                 res.json({

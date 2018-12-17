@@ -5,12 +5,19 @@
 	</head>
 	<body>  
 		<form name = "register-form" action="/controllers/register-controller" method="POST" onsubmit="return validateForm()">  
-			Name: <input type="text" name="name">
-			Email: <input type="text" name="email">
-			Password: <input type="password" name="password">
-			<input type="submit" value="Submit">
+			Name: <input type="text" name="name"><br>
+			Phone: <input type="number" name="phone"><br>
+			Email: <input type="email" name="email"><br>
+			Password: <input type="password" name="password"><br>
+			<input type="submit" value="submit">
+		</form>
+		<form name = "register-form" action="/login.html">  
+			I have registered before
+			<input type="submit" value="login">
 		</form>
 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		
 		<script>
 			function validateForm() {
 			  var name = document.forms["register-form"]["name"].value;

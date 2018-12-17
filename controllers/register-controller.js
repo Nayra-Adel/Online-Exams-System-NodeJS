@@ -3,23 +3,21 @@ var connection = require('./../config');
  
 module.exports.register=function(req,res){
     var today = new Date();
-    var hr={
+    var user={
         "name":req.body.name,
         "email":req.body.email,
-        "password":req.body.password
+        "password":req.body.password,
+        "phone":req.body.phone,
+        "type":"user"
     }
-    connection.query('INSERT INTO hr SET ?',hr, function (error, results) {
+    connection.query('INSERT INTO user SET ?',user, function (error, results) {
       if (error) {
         res.json({
             status:false,
             message:'there are some error with query'
         })
       }else{
-          res.json({
-            status:true,
-            data:results,
-            message:'user registered sucessfully'
-        })
+        res.redirect('/login.html');
       }
     });
 }
