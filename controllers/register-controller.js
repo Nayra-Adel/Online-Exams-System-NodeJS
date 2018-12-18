@@ -1,4 +1,3 @@
-var express=require("express");
 var connection = require('./../config');
  
 module.exports.register=function(req,res){

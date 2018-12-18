@@ -1,6 +1,7 @@
 var express=require("express");
 var bodyParser=require('body-parser');
- 
+var session = require('express-session');
+
 var connection = require('./config');
 
 var app = express();
@@ -12,6 +13,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(session({secret:"nayraaaaaaaa", resave:false, saveUninitialized:true}));
+
 app.get('/index.html', function (req, res) {  
    res.sendFile( __dirname + "/" + "index.html" );  
 })  
@@ -19,14 +22,42 @@ app.get('/index.html', function (req, res) {
 app.get('/login.html', function (req, res) {  
    res.sendFile( __dirname + "/" + "login.html" );  
 })  
+
+app.get('/config.js', function (req, res) {  
+   res.sendFile( __dirname + "/" + "config.js" );  
+})  
  
-app.get('/hr.html', function (req, res) {  
-   res.sendFile( __dirname + "/" + "hr.html" );  
+app.get('/hr.html',function(req,res){
+  ssn = req.session;
+  if(ssn.email) {
+    res.write('<h1> Hello '+ssn.name+'</h1>');
+    res.end('<a href="logout">Logout</a>');
+  } else {
+    res.write('<h1>login first.</h1>');
+    res.end('<a href="/login.html">Login</a>');
+  }
+});
+
+app.get('/user.html', function (req, res) {  
+	ssn = req.session;
+	if(ssn.email) {
+	res.write('<h1> Hello '+ssn.name+'</h1>');
+	res.end('<a href="logout">Logout</a>');
+	} else {
+	res.write('<h1>login first.</h1>');
+	res.end('<a href="/login.html">Login</a>');
+	}
 })  
 
- app.get('/user.html', function (req, res) {  
-   res.sendFile( __dirname + "/" + "user.html" );  
-})  
+app.get('/logout',function(req,res){
+  req.session.destroy(function(err) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.redirect('/index.html');
+    }
+  });
+});
 
 /* route to handle login and registration */
 app.post('/api/register',registerController.register);

@@ -15,6 +15,8 @@ module.exports.authenticate=function(req,res){
       else{
         if(results.length >0){
             if(password == results[0].password){
+              req.session.name = results[0].name;
+              req.session.email = results[0].email;
               if(results[0].type == "hr")
                 res.redirect('/hr.html');
               else
