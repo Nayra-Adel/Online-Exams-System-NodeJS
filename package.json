@@ -9,12 +9,16 @@
   "author": "Nayra Adel",
   "license": "ISC",
   "dependencies": {
+    "alphamail": "^1.1.5",
     "body-parser": "^1.18.3",
     "cryptr": "^4.0.2",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-fileupload": "^1.0.0",
+    "express-session": "^1.15.6",
     "mysql": "^2.16.0",
-    "req-flash": "0.0.3"
+    "nodemailer": "^4.7.0",
+    "req-flash": "0.0.3",
+    "session": "^0.1.0"
   }
 }
