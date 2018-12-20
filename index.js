@@ -1,14 +1,16 @@
 var express=require("express");
 var bodyParser=require('body-parser');
 var session = require('express-session');
+var path = require('path');
 
 var connection = require('./DB/config');
 
 var app = express();
+app.set('view engine', 'ejs');
 
-var authenticateController=require('./controllers/authenticate-controller');
-var userRegisterController=require('./controllers/user-register-controller');
-var hrRegisterController=require('./controllers/hr-register-controller');
+var authenticateController=require('./Controller/authenticate');
+var userRegisterController=require('./Controller/user-register');
+var hrRegisterController=require('./Controller/hr-register');
  
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -16,50 +18,52 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({secret:"nayraaaaaaaa", resave:false, saveUninitialized:true}));
 
-app.get('/View/register_hr.html', function (req, res) {  
-   res.sendFile( __dirname + "/" + "View/register_hr.html" );  
+app.get('/register_hr', function (req, res) {  
+   res.render("register_hr.ejs");  
 }) 
 
-app.get('/View/register_user.html', function (req, res) {  
-   res.sendFile( __dirname + "/" + "View/register_user.html" );  
+app.get('/register_user', function (req, res) {  
+   res.render("register_user.ejs");  
 }) 
 
-app.get('/View/login.html', function (req, res) {  
-   res.sendFile( __dirname + "/" + "View/login.html" );  
+app.get('/login', function (req, res) {  
+   res.render("login.ejs");  
 })  
 
 app.get('/config.js', function (req, res) {  
-   res.sendFile( __dirname + "/" + "config.js" );  
+   res.render("config.js");  
 })  
  
-app.get('/View/hr.html',function(req,res){
+app.get('/HR-Home',function(req,res){
   ssn = req.session;
   if(ssn.email) {
-    res.write('<h1> Hello '+ssn.name+'</h1>');
-    res.end('<a href="/View/welcome">Logout</a>');
+       res.render("hr.ejs", {
+          welcome: ssn.name
+       } );  
   } else {
     res.write('<h1>login first.</h1>');
-    res.end('<a href="/login.html">Login</a>');
+    res.end('<a href="/welcome">Login</a>');
   }
 });
 
-app.get('/View/user.html', function (req, res) {  
+app.get('/User-Home', function (req, res) {  
 	ssn = req.session;
 	if(ssn.email) {
-	res.write('<h1> Hello '+ssn.name+'</h1>');
-	res.end('<a href="/View/welcome">Logout</a>');
+	     res.render("hr.ejs", {
+          welcome: ssn.name
+       } ); 
 	} else {
 	res.write('<h1>login first.</h1>');
-	res.end('<a href="/login.html">Login</a>');
+	res.end('<a href="/welcome">Login</a>');
 	}
 })  
 
-app.get('/View/welcome',function(req,res){
+app.get('/welcome',function(req,res){
   req.session.destroy(function(err) {
     if(err) {
       console.log(err);
     } else {
-      res.sendFile( __dirname + "/" + "View/welcome.html" );  
+      res.render("welcome.ejs");  
     }
   });
 });
@@ -70,7 +74,7 @@ app.post('/api/hrRegister',hrRegisterController.hrRegister);
 app.post('/api/authenticate',authenticateController.authenticate);
  
 console.log(authenticateController);
-app.post('/controllers/user-register-controller', userRegisterController.candidateRegister);
-app.post('/controllers/hr-register-controller', hrRegisterController.hrRegister);
-app.post('/controllers/authenticate-controller', authenticateController.authenticate);
+app.post('/Controller/user-register', userRegisterController.candidateRegister);
+app.post('/Controller/hr-register', hrRegisterController.hrRegister);
+app.post('/Controller/authenticate', authenticateController.authenticate);
 app.listen(8012);

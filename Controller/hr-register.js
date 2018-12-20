@@ -16,7 +16,7 @@ module.exports.hrRegister=function(req,res){
     hrDB.addHr(hr, eventEmitter);
     
     eventEmitter.on('hr-registered', function(){
-        res.redirect('./../View/login.html');
+        res.redirect('/login');
     })  
     
     eventEmitter.on('hr-not-registered', function(){

@@ -7,6 +7,9 @@ module.exports.authenticate=function(req,res){
       
     connection.query('SELECT * FROM user WHERE email = ?',[email], function (error, results) {
       if (error) {
+        console.log(email);
+        console.log(results);
+        console.log(error);
           res.json({
             status:false,
             message:'there are some error with query'
@@ -18,9 +21,9 @@ module.exports.authenticate=function(req,res){
               req.session.name = results[0].username;
               req.session.email = results[0].email;
               if(results[0].is_hr == 1)
-                res.redirect('/../View/hr.html');
+                res.redirect('/HR-Home');
               else
-                res.redirect('/../View/user.html');
+                res.redirect('/User-Home');
             }
             else{
                 res.json({

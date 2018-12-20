@@ -16,7 +16,7 @@ module.exports.candidateRegister=function(req,res){
     userDB.addUser(user, eventEmitter);
     
     eventEmitter.on('user-registered', function(){
-        res.redirect('/../View/login.html');
+        res.redirect('/login');
     })  
     
     eventEmitter.on('user-not-registered', function(){
