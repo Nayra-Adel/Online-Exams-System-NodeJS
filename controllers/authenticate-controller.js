@@ -1,4 +1,4 @@
-var connection = require('./../config');
+var connection = require('./../DB/config');
 
 module.exports.authenticate=function(req,res){
 
@@ -15,12 +15,12 @@ module.exports.authenticate=function(req,res){
       else{
         if(results.length >0){
             if(password == results[0].password){
-              req.session.name = results[0].name;
+              req.session.name = results[0].username;
               req.session.email = results[0].email;
-              if(results[0].type == "hr")
-                res.redirect('/hr.html');
+              if(results[0].is_hr == 1)
+                res.redirect('/../View/hr.html');
               else
-                res.redirect('/user.html');
+                res.redirect('/../View/user.html');
             }
             else{
                 res.json({
