@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HR HOME</title>
+</head>
+<body>
+	<h1><%= welcome%></h1>
+	<a href="/welcome">Logout</a>
+	<a href="/HR-Home">Back</a>
+	<div>
+		<% for(var i=0; i<cv_and_names.length; i++){%>
+			<h2> <%= cv_and_names[i].username %></h2>
+			<h2> <%= cv_and_names[i].email %></h2>
+			<h2> <%= cv_and_names[i].password %></h2>
+			<a href="<%= cv_and_names[i].cv %>">CV</a>
+			<a href="/QuestionType"> accept </a>
+			<p>---------------------------------------------------------------</p>
+		<% } %>
+	</div>
+</body>
+</html>
