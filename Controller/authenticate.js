@@ -23,10 +23,12 @@ module.exports.authenticate=function(req,res){
                 res.locals.email = req.session.email;
               }
 
-              if(results[0].is_hr == 1)
+              if(results[0].is_hr == 1){
                 res.redirect('/HR-Home');
-              else
+              }
+              else{
                 res.redirect('/User-Home');
+              }
             }
             else{
                 res.json({

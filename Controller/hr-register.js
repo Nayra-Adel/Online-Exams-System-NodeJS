@@ -1,9 +1,10 @@
 var hrDB = require('./../Model/hr');
 events = require('events');
-var eventEmitter = new events.EventEmitter();
 
 module.exports.hrRegister=function(req,res){
-    
+
+    var eventEmitter = new events.EventEmitter();
+
     var hr = {
         "username":req.body.name,
         "password":req.body.password,

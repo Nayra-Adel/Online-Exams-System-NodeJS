@@ -1,8 +1,9 @@
 var userDB = require('./../Model/user');
 events = require('events');
-var eventEmitter = new events.EventEmitter();
 
 module.exports.approved=function(req,res){
+    
+    var eventEmitter = new events.EventEmitter();
 
     userDB.updateUserApprovedCV(eventEmitter, req.body.questionType, req.body.email);
     eventEmitter.on('approved-cv', function(){

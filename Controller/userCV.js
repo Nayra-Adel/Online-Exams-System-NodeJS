@@ -1,8 +1,9 @@
 var userDB = require('./../Model/user');
 events = require('events');
-var eventEmitter = new events.EventEmitter();
 
 module.exports.user=function(req,res){
+
+    var eventEmitter = new events.EventEmitter();
 
     userDB.getUserCVandName(eventEmitter);
     eventEmitter.on('selected-cv', function(cvs_names){

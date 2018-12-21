@@ -25,13 +25,11 @@ module.exports = {
     },
 
     updateUserApprovedCV : function(eventEmitter, examType, email){
-        console.log(email);
       connection.query('UPDATE user SET approved = 1, examType = ? where email = ?', [examType, email], function (error, result, fileds) {
         if (error == 'null'){
             eventEmitter.emit('not-approved-cv');
         }
         else{
-            console.log("no error");
             eventEmitter.emit('approved-cv');
         }
       });

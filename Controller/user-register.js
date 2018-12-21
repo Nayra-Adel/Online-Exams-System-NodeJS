@@ -1,15 +1,16 @@
 var userDB = require('./../Model/user');
 events = require('events');
-var eventEmitter = new events.EventEmitter();
 
 module.exports.candidateRegister=function(req,res){
-    
+
+    var eventEmitter = new events.EventEmitter();
+
     var user={
         "username":req.body.name,
         "password":req.body.password,
         "email":req.body.email,
         "phone":req.body.phone,
-        "cv":null,
+        "cv":req.body.cv,
         "is_hr": 0,
         "approved": 0
     }
