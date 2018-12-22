@@ -1,7 +1,7 @@
 var userDB = require('./../Model/user');
 events = require('events');
 
-module.exports.user=function(req,res){
+module.exports.see_user_cv=function(req,res){
 
     var eventEmitter = new events.EventEmitter();
 

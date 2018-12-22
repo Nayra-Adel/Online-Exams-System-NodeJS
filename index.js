@@ -12,7 +12,7 @@ var userRegisterController=require('./Controller/user-register');
 var userController        =require('./Controller/userCV');
 var userCVController      =require('./Controller/approvedCV');
 var hrRegisterController  =require('./Controller/hr-register');
- 
+
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -75,14 +75,14 @@ app.get('/welcome',function(req,res){
 
 /* route to handle login and registration */
 app.post('/api/userRegister',userRegisterController.candidateRegister);
-app.post('/api/userCV',userController.user);
+app.post('/api/userCV',userController.see_user_cv);
 app.post('/api/approvedCV',userCVController.approved);
 app.post('/api/hrRegister',hrRegisterController.hrRegister);
 app.post('/api/authenticate',authenticateController.authenticate);
  
 console.log(authenticateController);
 app.post('/Controller/user-register', userRegisterController.candidateRegister);
-app.post('/Controller/userCV', userController.user);
+app.post('/Controller/userCV', userController.see_user_cv);
 app.post('/Controller/approvedCV', userCVController.approved);
 app.post('/Controller/hr-register', hrRegisterController.hrRegister);
 app.post('/Controller/authenticate', authenticateController.authenticate);

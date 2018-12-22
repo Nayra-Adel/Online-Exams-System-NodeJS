@@ -9,7 +9,7 @@ module.exports.hrRegister=function(req,res){
         "username":req.body.name,
         "password":req.body.password,
         "email":req.body.email,
-        "phone":req.body.phone,
+        "telephone":req.body.phone,
         "cv":null,
         "is_hr": 1,
         "approved": 0

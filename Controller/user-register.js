@@ -9,7 +9,7 @@ module.exports.candidateRegister=function(req,res){
         "username":req.body.name,
         "password":req.body.password,
         "email":req.body.email,
-        "phone":req.body.phone,
+        "telephone":req.body.phone,
         "cv":req.body.cv,
         "is_hr": 0,
         "approved": 0
