@@ -9,9 +9,12 @@ app.set('view engine', 'ejs');
 
 var authenticateController=require('./Controller/authenticate');
 var userRegisterController=require('./Controller/user-register');
+var hrRegisterController  =require('./Controller/hr-register');
+
 var userController        =require('./Controller/userCV');
 var userCVController      =require('./Controller/approvedCV');
-var hrRegisterController  =require('./Controller/hr-register');
+var userExamController    =require('./Controller/userExam');
+var userAnswersController =require('./Controller/userAnswers');
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -26,13 +29,41 @@ app.get('/login',         function (req, res) { res.render("login.ejs"); })
 app.get('/config.js',     function (req, res) { res.render("config.js"); })  
 app.get('/QuestionType',  function (req, res) { res.render("questionType.ejs"); })  
 
-
 app.get('/See_all_cvs', function (req, res) {  
   ssn = req.session;
   if(ssn.email) {
        res.render("see_cv.ejs", {
           welcome: ssn.username,
           cv_and_names: ssn.cvs_names
+       });  
+  } else {
+    res.write('<h1>login first.</h1>');
+    res.end('<a href="/welcome">Login</a>');
+  }
+}); 
+
+app.get('/show_exam', function (req, res) {  
+  ssn = req.session;
+  if(ssn.email) {
+    var link = "exam";
+    if(ssn.user_approval == 0){link = ""}
+       res.render("show_exam.ejs", {
+          welcome: ssn.username,
+          exam_link: link
+       });  
+  } else {
+    res.write('<h1>login first.</h1>');
+    res.end('<a href="/welcome">Login</a>');
+  }
+}); 
+
+app.get('/exam', function (req, res) {  
+  ssn = req.session;
+  if(ssn.email) {
+       res.render("exam.ejs", {
+          welcome: ssn.username,
+          questions: ssn.question_list,
+          wrong_answers: ssn.wrong_answers
        });  
   } else {
     res.write('<h1>login first.</h1>');
@@ -53,15 +84,15 @@ app.get('/HR-Home',function(req,res){
 });
 
 app.get('/User-Home', function (req, res) {  
-	ssn = req.session;
-	if(ssn.email) {
-	     res.render("user.ejs", {
+  ssn = req.session;
+  if(ssn.email) {
+       res.render("user.ejs", {
           welcome: ssn.username
        } ); 
-	} else {
-  	res.write('<h1>login first.</h1>');
-  	res.end('<a href="/welcome">Login</a>');
-	}
+  } else {
+    res.write('<h1>login first.</h1>');
+    res.end('<a href="/welcome">Login</a>');
+  }
 })  
 
 app.get('/welcome',function(req,res){
@@ -75,15 +106,21 @@ app.get('/welcome',function(req,res){
 
 /* route to handle login and registration */
 app.post('/api/userRegister',userRegisterController.candidateRegister);
-app.post('/api/userCV',userController.see_user_cv);
-app.post('/api/approvedCV',userCVController.approved);
-app.post('/api/hrRegister',hrRegisterController.hrRegister);
+app.post('/api/hrRegister'  ,hrRegisterController.hrRegister);
 app.post('/api/authenticate',authenticateController.authenticate);
+
+app.post('/api/userCV'      ,userController.see_user_cv);
+app.post('/api/userExam'    ,userExamController.show_exam);
+app.post('/api/approvedCV'  ,userCVController.approved);
+app.post('/api/getAnswer'   ,userAnswersController.answers);
  
-console.log(authenticateController);
-app.post('/Controller/user-register', userRegisterController.candidateRegister);
-app.post('/Controller/userCV', userController.see_user_cv);
-app.post('/Controller/approvedCV', userCVController.approved);
-app.post('/Controller/hr-register', hrRegisterController.hrRegister);
-app.post('/Controller/authenticate', authenticateController.authenticate);
+app.post('/Controller/user-register' ,userRegisterController.candidateRegister);
+app.post('/Controller/hr-register'   ,hrRegisterController.hrRegister);
+app.post('/Controller/authenticate'  ,authenticateController.authenticate);
+
+app.post('/Controller/userCV'        ,userController.see_user_cv);
+app.post('/Controller/userExam'      ,userExamController.show_exam);
+app.post('/Controller/approvedCV'    ,userCVController.approved);
+app.post('/Controller/getAnswer'     ,userAnswersController.answers);
+
 app.listen(8012);

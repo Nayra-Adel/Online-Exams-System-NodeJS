@@ -19,22 +19,22 @@ module.exports.approved=function(req,res){
         })
     })
 
-    eventEmitter2.on('get_ids', function(userID, examID){
+    eventEmitter2.on('get-ids', function(userID, examID){
         userDB.setExam(eventEmitter3, userID, examID);
     })
 
-    eventEmitter2.on('not-get_ids', function(){
+    eventEmitter2.on('not-get-ids', function(){
         res.json({
             status:false,
             message:'there are some error with query'
         })
     })
 
-    eventEmitter3.on('set_exam', function(){
+    eventEmitter3.on('set-exam', function(){
         res.redirect('/HR-Home');
     })
 
-    eventEmitter3.on('not-set_exam', function(){
+    eventEmitter3.on('not-set-exam', function(){
         res.json({
             status:false,
             message:'there are some error with query'
