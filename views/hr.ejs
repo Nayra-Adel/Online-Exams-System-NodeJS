@@ -14,5 +14,28 @@
 	<form action="/Controller/showUserAnswers" method="POST"> 
 		<input type="submit" value="show_users_answers">  
 	</form>
+
+
+	<form action="/Controller/hrSearch" method="POST"> 
+		<button type="button" onclick='show("selectionHidden")'>search with more than criteria</button>
+		<div id="selectionHidden" style="display: none;">
+		  <input type="radio" name="search" value="email"> email<br>
+		  <input type="radio" name="search" value="name">  name<br>
+		  <input type="radio" name="search" value="type">  type <br> 		 		  
+		  <input type="text" name="searchValue" placeholder="if you choose type: Enter the type ;)">
+		  <input type="submit" value="search!"> 
+		</div> 
+	</form>
+
+	<script>
+		function show(hidden) {
+		  var x = document.getElementById(hidden);
+		  if (x.style.display === "none") {
+		    x.style.display = "block";
+		  }else{
+		    x.style.display = "none";
+		  }
+		}
+	</script>
 </body>
 </html>

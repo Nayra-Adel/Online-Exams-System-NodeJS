@@ -18,6 +18,7 @@ var userRejectedCVController      =require('./Controller/rejectedCV');
 var userExamController            =require('./Controller/userExam');
 var userAnswersController         =require('./Controller/userAnswers');
 var showUserAnswersController     =require('./Controller/showUserAnswers');
+var hrSearchController            =require('./Controller/hr-search');
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -129,6 +130,7 @@ app.post('/api/approvedCV'           ,userApprovedCVController.approved);
 app.post('/api/rejectedCV'           ,userRejectedCVController.rejected);
 
 app.post('/api/showUserAnswers'      ,showUserAnswersController.see_user_answers);
+app.post('/api/hrSearch'             ,hrSearchController.search);
 app.post('/api/userExam'             ,userExamController.show_exam);
 app.post('/api/getAnswer'            ,userAnswersController.answers);
  
@@ -141,6 +143,7 @@ app.post('/Controller/approvedCV'    ,userApprovedCVController.approved);
 app.post('/Controller/rejectedCV'    ,userRejectedCVController.rejected);
 
 app.post('/Controller/showUserAnswers',showUserAnswersController.see_user_answers);
+app.post('/Controller/hrSearch'       ,hrSearchController.search);
 app.post('/Controller/userExam'       ,userExamController.show_exam);
 app.post('/Controller/getAnswer'      ,userAnswersController.answers);
 

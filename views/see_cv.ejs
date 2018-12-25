@@ -15,7 +15,7 @@
 			<a href="<%= cv_and_names[i].cv %>">CV</a>
 
 			<form action="/Controller/approvedCV" method="POST"> 
-				<a href="#" onclick='show("acceptHidden")'> accept</a>
+				<button type="button" onclick='show("acceptHidden")'>accept</button>
 				<div id="acceptHidden" style="display: none;">
 					Confirm Mail: <input type="email" name="acceptEmail" placeholder="Confirm Mail">
 					Question Type:<input type="text" name="questionType">
@@ -24,7 +24,7 @@
 			</form>
 
 			<form action="/Controller/rejectedCV" method="POST"> 
-				<a href="#" onclick='show("rejectHidden")'> reject</a>
+				<button type="button" onclick='show("rejectHidden")'>reject</button>
 				<div id="rejectHidden" style="display: none;">
 					<input type="email" name="rejectEmail" placeholder="Confirm Mail">
 					<input type="submit" value="confirm!"> 
@@ -36,10 +36,11 @@
 
 	<script>
 	function show(hidden) {
-	console.log(hidden);
 	  var x = document.getElementById(hidden);
 	  if (x.style.display === "none") {
 	    x.style.display = "block";
+	  }else{
+	    x.style.display = "none";	  	
 	  }
 	}
 	</script>
