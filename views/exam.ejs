@@ -1,43 +1,43 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-	<title>USER EXAM</title>
-</head>
-<body>
-	<h1><%= welcome%></h1>
-	<a href="/welcome">Logout</a>
-	<a href="/USER-Home">Back</a>
+	<head>
+		<title>USER EXAM</title>
+	</head>
+	<body>
+		<h1>WELCOME <%= welcome%></h1>
+		<a href="/welcome">Logout</a>
+		<a href="/USER-Home">Back</a>
 
-	<form name = "answer-form" action="/Controller/getAnswer" method="POST">  
+		<form name = "answer-form" action="/Controller/getAnswer" method="POST">  
 
-		<h2> <%= questions[0].question_sentence %></h2>
-		1- <%= questions[0].correctAnswer %><br>
-		2- <%= wrong_answers[0].answer %><br>
-	    3- <%= wrong_answers[1].answer %><br>
-	    4- <%= wrong_answers[2].answer %><br>
-	    <input type="text" name= answer1>
-	    <br>
-		<p>----------------------------------------------------</p>
+			<h2> <%= questions[0].question_sentence %></h2>
+			  1- <%= questions[0].correctAnswer %><br>
+		   	  2- <%= wrong_answers[0].answer %><br>
+			  3- <%= wrong_answers[1].answer %><br>
+			  4- <%= wrong_answers[2].answer %><br>
+		    <input type="text" name= answer1>
+		    <br>
+			<p>----------------------------------------------------</p>
 
-		<h2> <%= questions[1].question_sentence %></h2>
-		1- <%= questions[1].correctAnswer %><br>
-		2- <%= wrong_answers[3].answer %><br>
-	    3- <%= wrong_answers[4].answer %><br>
-	    4- <%= wrong_answers[5].answer %><br>
-	    <input type="text" name= answer2>
-	    <br>
-		<p>----------------------------------------------------</p>
+			<h2> <%= questions[1].question_sentence %></h2>
+			  1- <%= questions[1].correctAnswer %><br>
+			  2- <%= wrong_answers[3].answer %><br>
+		      3- <%= wrong_answers[4].answer %><br>
+		      4- <%= wrong_answers[5].answer %><br>
+		    <input type="text" name= answer2>
+		    <br>
+			<p>----------------------------------------------------</p>
 
-		<h2> <%= questions[2].question_sentence %></h2>
-		1- <%= questions[2].correctAnswer %><br>
-		2- <%= wrong_answers[6].answer %><br>
-	    3- <%= wrong_answers[7].answer %><br>
-	    4- <%= wrong_answers[8].answer %><br>
-	    <input type="text" name= answer3>
-	    <br>
+			<h2> <%= questions[2].question_sentence %></h2>
+			  1- <%= questions[2].correctAnswer %><br>
+			  2- <%= wrong_answers[6].answer %><br>
+		      3- <%= wrong_answers[7].answer %><br>
+		      4- <%= wrong_answers[8].answer %><br>
+		    <input type="text" name= answer3>
+		    <br>
 
-		<br><input type="submit" name="done" value="Done">
-	</form>
-</body>
+			<br><input type="submit" name="done" value="Done">
+		</form>
+	</body>
 </html>

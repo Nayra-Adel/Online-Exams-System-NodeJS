@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HR HOME</title>
+</head>
+<body>
+	<h1>WELCOME <%= welcome%></h1>
+	<a href="/welcome">Logout</a>
+	<a href="/HR-Home">Back</a>
+	<div>
+		<% for(var i=0; i<users_answers.length; i+=3){%>
+			<h4>USER: <%= users_answers[i].username %></h4>
+		    <h4>EMAIL : <%= users_answers[i].email %></h4>
+			<h4> EXAM TYPE: <%= users_answers[i].type %></h4>
+			<a href="<%= users_answers[i].cv %>">CV</a><br>
+			<p>-----------------------------------------------------</p>
+			<h2><%= users_answers[i].username %>'s Answers</h2> 
+			<p>-----------------------------------------------------</p>
+			<% for(var j=i; j<i+3; j++){%>
+				<h3> QUESTION: <%= users_answers[j].question_sentence %></h3>
+				<h4> USER ANSWER: <%= users_answers[j].correctAnswer %></h4>
+				<h4> CORRECT ANSWER: <%= users_answers[j].user_answer %></h4><br>
+			<% } %>
+			<p>##############################################################</p>
+		<% } %>
+	</div>
+</body>
+</html>

@@ -42,8 +42,6 @@ module.exports = {
                 eventEmitter.emit('not-get-ids');
             }
             else{
-                console.log(result[0].ids); // user id
-                console.log(result[1].ids); // exam id
                 eventEmitter.emit('get-ids', result[0].ids, result[1].ids);
             }
         });
@@ -56,7 +54,6 @@ module.exports = {
                 eventEmitter.emit('not-get-userid');
             }
             else{
-                console.log(result[0].user_id); // user id
                 eventEmitter.emit('get-userid', result[0].user_id);
             }
         });
@@ -79,7 +76,6 @@ module.exports = {
                 eventEmitter.emit('not-accept');
             }
             else{
-                console.log(result[0]); 
                 eventEmitter.emit('accept', result[0].approved);
             }
         });
@@ -92,7 +88,6 @@ module.exports = {
                 eventEmitter.emit('not-get-exam-type');
             }
             else{
-                console.log(result[0].type); // exam type
                 eventEmitter.emit('get-exam-type', result[0].type);
             }
         });
@@ -117,7 +112,6 @@ module.exports = {
                 eventEmitter.emit('not-get-wrong-answers');
             }
             else{
-                //console.log(result); 
                 eventEmitter.emit('get-wrong-answers', result);
             }
         });
@@ -133,5 +127,17 @@ module.exports = {
             eventEmitter.emit('set-answers');
         }
       });
+    },
+
+    showUserAnswers: function(eventEmitter){
+        connection.query('SELECT user.user_id, username, email, cv, type, question_sentence, user_answer, correctAnswer FROM online_exams_db.user JOIN online_exams_db.pass_exam ON pass_exam.user_id = user.user_id JOIN online_exams_db.exam ON exam.exam_id=pass_exam.exam_id JOIN online_exams_db.exam_question ON exam.exam_id=exam_question.exam_id JOIN online_exams_db.question ON question.question_id=exam_question.question_id JOIN online_exams_db.solve_question ON exam_question.question_id=solve_question.question_id where user.user_id=solve_question.user_id order by user.user_id',
+        function(error, result){
+            if (error == 'null'){
+                eventEmitter.emit('not-users-answers');        
+            }
+            else{
+                eventEmitter.emit('users-answers', result);
+            }
+        });
     }
 };

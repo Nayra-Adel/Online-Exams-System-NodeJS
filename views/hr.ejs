@@ -4,11 +4,15 @@
 	<title>HR HOME</title>
 </head>
 <body>
-	<h1><%= welcome%></h1>
+	<h1>WELCOME <%= welcome%></h1>
 	<a href="/welcome">Logout</a>
 	
 	<form action="/Controller/userCV" method="POST"> 
 		<input type="submit" value="show_all_cvs">  
+	</form>
+
+	<form action="/Controller/showUserAnswers" method="POST"> 
+		<input type="submit" value="show_users_answers">  
 	</form>
 </body>
 </html>
