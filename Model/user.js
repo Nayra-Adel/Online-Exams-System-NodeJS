@@ -139,5 +139,17 @@ module.exports = {
                 eventEmitter.emit('users-answers', result);
             }
         });
+    },
+
+    rejectUser: function(eventEmitter, email){
+        connection.query('DELETE FROM user WHERE email = ?', [email],
+        function(error, result){
+            if (error == 'null'){
+                eventEmitter.emit('not-reject-user');        
+            }
+            else{
+                eventEmitter.emit('reject-user', result);
+            }
+        });
     }
 };

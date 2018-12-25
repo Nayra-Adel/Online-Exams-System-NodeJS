@@ -13,9 +13,36 @@
 			<h2> <%= cv_and_names[i].email %></h2>
 			<h2> <%= cv_and_names[i].password %></h2>
 			<a href="<%= cv_and_names[i].cv %>">CV</a>
-			<a href="/QuestionType"> accept </a>
+
+			<form action="/Controller/approvedCV" method="POST"> 
+				<a href="#" onclick='show("acceptHidden")'> accept</a>
+				<div id="acceptHidden" style="display: none;">
+					Confirm Mail: <input type="email" name="acceptEmail" placeholder="Confirm Mail">
+					Question Type:<input type="text" name="questionType">
+					<input type="submit" value="confirm!"> 
+				</div> 
+			</form>
+
+			<form action="/Controller/rejectedCV" method="POST"> 
+				<a href="#" onclick='show("rejectHidden")'> reject</a>
+				<div id="rejectHidden" style="display: none;">
+					<input type="email" name="rejectEmail" placeholder="Confirm Mail">
+					<input type="submit" value="confirm!"> 
+				</div> 
+			</form>
 			<p>---------------------------------------------------------------</p>
 		<% } %>
 	</div>
+
+	<script>
+	function show(hidden) {
+	console.log(hidden);
+	  var x = document.getElementById(hidden);
+	  if (x.style.display === "none") {
+	    x.style.display = "block";
+	  }
+	}
+	</script>
+
 </body>
 </html>
