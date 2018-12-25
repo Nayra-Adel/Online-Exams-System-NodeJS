@@ -7,15 +7,17 @@ var connection = require('./DB/config');
 var app = express();
 app.set('view engine', 'ejs');
 
-var authenticateController=require('./Controller/authenticate');
-var userRegisterController=require('./Controller/user-register');
-var hrRegisterController  =require('./Controller/hr-register');
+var authenticateController        =require('./Controller/authenticate');
+var userRegisterController        =require('./Controller/user-register');
+var hrRegisterController          =require('./Controller/hr-register');
 
-var userController        =require('./Controller/userCV');
-var showUserAnswersController =require('./Controller/showUserAnswers');
-var userCVController      =require('./Controller/approvedCV');
-var userExamController    =require('./Controller/userExam');
-var userAnswersController =require('./Controller/userAnswers');
+var userController                =require('./Controller/userCV');
+var userApprovedCVController      =require('./Controller/approvedCV');
+var userRejectedCVController      =require('./Controller/rejectedCV');
+
+var userExamController            =require('./Controller/userExam');
+var userAnswersController         =require('./Controller/userAnswers');
+var showUserAnswersController     =require('./Controller/showUserAnswers');
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -28,7 +30,6 @@ app.get('/register_user', function (req, res) { res.render("register_user.ejs");
 app.get('/login',         function (req, res) { res.render("login.ejs"); })  
 
 app.get('/config.js',     function (req, res) { res.render("config.js"); })  
-app.get('/QuestionType',  function (req, res) { res.render("questionType.ejs"); })  
 
 app.get('/See_all_cvs', function (req, res) {  
   ssn = req.session;
@@ -123,20 +124,24 @@ app.post('/api/userRegister',userRegisterController.candidateRegister);
 app.post('/api/hrRegister'  ,hrRegisterController.hrRegister);
 app.post('/api/authenticate',authenticateController.authenticate);
 
-app.post('/api/userCV'      ,userController.see_user_cv);
+app.post('/api/userCV'               ,userController.see_user_cv);
+app.post('/api/approvedCV'           ,userApprovedCVController.approved);
+app.post('/api/rejectedCV'           ,userRejectedCVController.rejected);
+
 app.post('/api/showUserAnswers'      ,showUserAnswersController.see_user_answers);
-app.post('/api/userExam'    ,userExamController.show_exam);
-app.post('/api/approvedCV'  ,userCVController.approved);
-app.post('/api/getAnswer'   ,userAnswersController.answers);
+app.post('/api/userExam'             ,userExamController.show_exam);
+app.post('/api/getAnswer'            ,userAnswersController.answers);
  
 app.post('/Controller/user-register' ,userRegisterController.candidateRegister);
 app.post('/Controller/hr-register'   ,hrRegisterController.hrRegister);
 app.post('/Controller/authenticate'  ,authenticateController.authenticate);
 
-app.post('/Controller/userCV'           ,userController.see_user_cv);
-app.post('/Controller/showUserAnswers'  ,showUserAnswersController.see_user_answers);
-app.post('/Controller/userExam'      ,userExamController.show_exam);
-app.post('/Controller/approvedCV'    ,userCVController.approved);
-app.post('/Controller/getAnswer'     ,userAnswersController.answers);
+app.post('/Controller/userCV'        ,userController.see_user_cv);
+app.post('/Controller/approvedCV'    ,userApprovedCVController.approved);
+app.post('/Controller/rejectedCV'    ,userRejectedCVController.rejected);
+
+app.post('/Controller/showUserAnswers',showUserAnswersController.see_user_answers);
+app.post('/Controller/userExam'       ,userExamController.show_exam);
+app.post('/Controller/getAnswer'      ,userAnswersController.answers);
 
 app.listen(8012);

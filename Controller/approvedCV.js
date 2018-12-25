@@ -7,9 +7,12 @@ module.exports.approved=function(req,res){
     var eventEmitter2 = new events.EventEmitter();
     var eventEmitter3 = new events.EventEmitter();
 
-    userDB.updateUserApprovedCV(eventEmitter, req.body.email);
+    var email = req.body.acceptEmail;
+    var qType = req.body.questionType;
+
+    userDB.updateUserApprovedCV(eventEmitter, email);
     eventEmitter.on('approved-cv', function(){
-        userDB.getUserExamIDs(eventEmitter2, req.body.email, req.body.questionType);
+        userDB.getUserExamIDs(eventEmitter2, email, qType);
     })  
     
     eventEmitter.on('not-approved-cv', function(){
