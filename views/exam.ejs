@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,27 +7,29 @@
 		<h1>WELCOME <%= welcome%></h1>
 		<a href="/welcome">Logout</a>
 		<a href="/USER-Home">Back</a>
-
-		<form name = "answer-form" action="/Controller/getAnswer" method="POST">  
-
+		<form id= "myform" name = "answerForm" action="/Controller/getAnswer" method="POST">
 			<h2> <%= questions[0].question_sentence %></h2>
-				  <input type="radio" name="answer1" value="<%= questions[0].correctAnswer %>"> <%= questions[0].correctAnswer %><br>
-  		  		  <input type="radio" name="answer1" value="<%= wrong_answers[0].answer %>"> <%= wrong_answers[0].answer %><br>
- 		 		  <input type="radio" name="answer1" value="<%= wrong_answers[1].answer %>"> <%= wrong_answers[1].answer %><br> 		 		  
- 		 		  <input type="radio" name="answer1" value="<%= wrong_answers[2].answer %>"> <%= wrong_answers[2].answer %><br>
+			<input type="radio" name="answer1" value="<%= questions[0].correctAnswer %>"> <%= questions[0].correctAnswer %><br>
+			<input type="radio" name="answer1" value="<%= wrong_answers[0].answer %>"> <%= wrong_answers[0].answer %><br>
+			<input type="radio" name="answer1" value="<%= wrong_answers[1].answer %>"> <%= wrong_answers[1].answer %><br>
+			<input type="radio" name="answer1" value="<%= wrong_answers[2].answer %>"> <%= wrong_answers[2].answer %><br>
 			<br><p>----------------------------------------------------</p>
 			<h2> <%= questions[1].question_sentence %></h2>
-				  <input type="radio" name="answer2" value="<%= questions[1].correctAnswer %>"> <%= questions[1].correctAnswer %><br>
-  		  		  <input type="radio" name="answer2" value="<%= wrong_answers[3].answer %>"> <%= wrong_answers[3].answer %><br>
- 		 		  <input type="radio" name="answer2" value="<%= wrong_answers[4].answer %>"> <%= wrong_answers[4].answer %><br> 		 		  
- 		 		  <input type="radio" name="answer2" value="<%= wrong_answers[5].answer %>"> <%= wrong_answers[5].answer %><br>
+			<input type="radio" name="answer2" value="<%= questions[1].correctAnswer %>"> <%= questions[1].correctAnswer %><br>
+			<input type="radio" name="answer2" value="<%= wrong_answers[3].answer %>"> <%= wrong_answers[3].answer %><br>
+			<input type="radio" name="answer2" value="<%= wrong_answers[4].answer %>"> <%= wrong_answers[4].answer %><br>
+			<input type="radio" name="answer2" value="<%= wrong_answers[5].answer %>"> <%= wrong_answers[5].answer %><br>
 			<br><p>----------------------------------------------------</p>
 			<h2> <%= questions[2].question_sentence %></h2>
-				  <input type="radio" name="answer3" value="<%= questions[2].correctAnswer %>"> <%= questions[2].correctAnswer %><br>
-  		  		  <input type="radio" name="answer3" value="<%= wrong_answers[6].answer %>"> <%= wrong_answers[6].answer %><br>
- 		 		  <input type="radio" name="answer3" value="<%= wrong_answers[7].answer %>"> <%= wrong_answers[7].answer %><br> 		 		  
- 		 		  <input type="radio" name="answer3" value="<%= wrong_answers[8].answer %>"> <%= wrong_answers[8].answer %><br>
+			<input type="radio" name="answer3" value="<%= questions[2].correctAnswer %>"> <%= questions[2].correctAnswer %><br>
+			<input type="radio" name="answer3" value="<%= wrong_answers[6].answer %>"> <%= wrong_answers[6].answer %><br>
+			<input type="radio" name="answer3" value="<%= wrong_answers[7].answer %>"> <%= wrong_answers[7].answer %><br>
+			<input type="radio" name="answer3" value="<%= wrong_answers[8].answer %>"> <%= wrong_answers[8].answer %><br>
 			<br><br><input type="submit" name="done" value="Done">
 		</form>
+		<script type='text/javascript'>
+			setInterval( "autosubmit()", 10000 );
+			function autosubmit(){ document.answerForm.submit();}
+		</script>
 	</body>
 </html>
