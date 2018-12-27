@@ -22,6 +22,10 @@ module.exports.search=function(req,res){
         done = "search-name";
         error = "not-search-name";
         hrDB.showUserBasedOnName(eventEmitter, searchVal);
+    }else if (search == "date") {
+        done = "search-date";
+        error = "not-search-date";
+        hrDB.showUserBasedOnDate(eventEmitter, searchVal);
     }
 
     eventEmitter.on(done, function(show_users_answers){
