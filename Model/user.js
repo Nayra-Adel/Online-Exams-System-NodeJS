@@ -117,9 +117,9 @@ module.exports = {
         });
     },
 
-    addUserAnswers : function(eventEmitter, u1, q1, q2, q3, a1, a2, a3){
-      connection.query('INSERT INTO solve_question (user_id,question_id,user_answer) VALUES (?,?,?), (?,?,?), (?,?,?)',
-        [u1, q1, a1, u1, q2, a2, u1, q3, a3], function (error, result) {
+    addUserAnswers : function(eventEmitter, u1, q1, q2, q3, a1, a2, a3, date){
+      connection.query('INSERT INTO solve_question (user_id,question_id,user_answer, date) VALUES (?,?,?,?), (?,?,?,?), (?,?,?,?)',
+        [u1, q1, a1, date, u1, q2, a2, date, u1, q3, a3, date], function (error, result) {
         if (error == 'null'){
             eventEmitter.emit('not-set-answers');        
         }
