@@ -52,7 +52,31 @@ module.exports.answers=function(req,res){
         })
     })
 
-    eventEmitter2.on('set-answers', function(userID){
+    eventEmitter2.on('set-answers', function(userID){        
+        var mailOptions = {
+          from: 'ia.onlineexamssystem@gmail.com',
+          to: "req.session.email",
+          subject: 'Your Answers',
+          text: "Q1: " + req.session.question_list[0].question_sentence + "\n" + "answer: " + a1 + "\n" 
+              + "Q2: " + req.session.question_list[1].question_sentence + "\n" + "answer: " + a2 + "\n"
+              + "Q3: " + req.session.question_list[2].question_sentence + "\n" + "answer: " + a3 + "\n"                
+        };
+
+        var transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'ia.onlineexamssystem@gmail.com',
+            pass: 'OES_123456'
+          }
+        });
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email sent: ' + info.response);
+          }
+        });
+
         userDB.set_score_skip(eventEmitter3, score, skip, userID);
     })  
     
