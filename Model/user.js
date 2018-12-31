@@ -124,13 +124,13 @@ module.exports = {
             eventEmitter.emit('not-set-answers');        
         }
         else{
-            eventEmitter.emit('set-answers');
+            eventEmitter.emit('set-answers', u1);
         }
       });
     },
 
     showUserAnswers: function(eventEmitter){
-        connection.query('SELECT user.user_id, username, email, cv, type, question_sentence, user_answer, correctAnswer FROM online_exams_db.user JOIN online_exams_db.pass_exam ON pass_exam.user_id = user.user_id JOIN online_exams_db.exam ON exam.exam_id=pass_exam.exam_id JOIN online_exams_db.exam_question ON exam.exam_id=exam_question.exam_id JOIN online_exams_db.question ON question.question_id=exam_question.question_id JOIN online_exams_db.solve_question ON exam_question.question_id=solve_question.question_id where user.user_id=solve_question.user_id order by user.user_id',
+        connection.query('SELECT user.user_id, username, email, cv, type, question_sentence, user_answer, correctAnswer, score, skip FROM online_exams_db.user JOIN online_exams_db.pass_exam ON pass_exam.user_id = user.user_id JOIN online_exams_db.exam ON exam.exam_id=pass_exam.exam_id JOIN online_exams_db.exam_question ON exam.exam_id=exam_question.exam_id JOIN online_exams_db.question ON question.question_id=exam_question.question_id JOIN online_exams_db.solve_question ON exam_question.question_id=solve_question.question_id where user.user_id=solve_question.user_id order by user.user_id',
         function(error, result){
             if (error == 'null'){
                 eventEmitter.emit('not-users-answers');        
@@ -149,6 +149,18 @@ module.exports = {
             }
             else{
                 eventEmitter.emit('reject-user', result);
+            }
+        });
+    },
+
+    set_score_skip: function(eventEmitter, score, skip, userID){
+        connection.query('UPDATE pass_exam SET score = ? , skip = ? where user_id = ?', [score, skip, userID],
+        function(error, result){
+            if (error == 'null'){
+                eventEmitter.emit('not-set-score');        
+            }
+            else{
+                eventEmitter.emit('set-score');
             }
         });
     }
