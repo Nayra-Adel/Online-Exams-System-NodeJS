@@ -8,9 +8,9 @@ module.exports.answers=function(req,res){
     var eventEmitter2 = new events.EventEmitter();
     var eventEmitter3 = new events.EventEmitter();
 
-    a1 = req.body.answer1;
-    a2 = req.body.answer2;
-    a3 = req.body.answer3;
+    a1 = req.session.answer1;
+    a2 = req.session.answer2;
+    a3 = req.session.answer3;
 
     if (!a1) {a1 = ""}
     if (!a2) {a2 = ""}
@@ -52,7 +52,8 @@ module.exports.answers=function(req,res){
         })
     })
 
-    eventEmitter2.on('set-answers', function(userID){        
+    eventEmitter2.on('set-answers', function(userID){     
+    /*
         var mailOptions = {
           from: 'ia.onlineexamssystem@gmail.com',
           to: "req.session.email",
@@ -76,7 +77,7 @@ module.exports.answers=function(req,res){
             console.log('Email sent: ' + info.response);
           }
         });
-
+    */
         userDB.set_score_skip(eventEmitter3, score, skip, userID);
     })  
     

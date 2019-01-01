@@ -6,6 +6,7 @@ var connection = require('./DB/config');
 
 var app = express();
 app.set('view engine', 'ejs');
+app.use(express.static('public'));
 
 var authenticateController        =require('./Controller/authenticate');
 var userRegisterController        =require('./Controller/user-register');
@@ -72,6 +73,18 @@ app.get('/show_exam', function (req, res) {
     res.end('<a href="/welcome">Login</a>');
   }
 }); 
+
+app.post("/answers/save", function(req,res){
+  console.log('Post answers: ' + JSON.stringify(req.body));
+
+  ssn = req.session;
+  ssn.answer1 = req.body.answer1;
+  ssn.answer2 = req.body.answer2;
+  ssn.answer3 = req.body.answer3;
+
+  var answers= {};
+  return res.send(answers);
+});
 
 app.get('/exam', function (req, res) {  
   ssn = req.session;

@@ -6,6 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+    "keywords": [
+    "NodeJs",
+    "Express",
+    "Bootstrap",
+    "Jquery",
+    "Ajax"
+  ],
   "author": "Nayra Adel",
   "license": "ISC",
   "dependencies": {
