@@ -12,6 +12,10 @@ module.exports.answers=function(req,res){
     a2 = req.session.answer2;
     a3 = req.session.answer3;
 
+    console.log(a1);
+    console.log(a2);
+    console.log(a3);
+
     if (!a1) {a1 = ""}
     if (!a2) {a2 = ""}
     if (!a3) {a3 = ""}
@@ -52,8 +56,8 @@ module.exports.answers=function(req,res){
         })
     })
 
-    eventEmitter2.on('set-answers', function(userID){     
-    /*
+    eventEmitter2.on('set-answers', function(userID){        
+/*
         var mailOptions = {
           from: 'ia.onlineexamssystem@gmail.com',
           to: "req.session.email",
@@ -77,7 +81,7 @@ module.exports.answers=function(req,res){
             console.log('Email sent: ' + info.response);
           }
         });
-    */
+*/
         userDB.set_score_skip(eventEmitter3, score, skip, userID);
     })  
     

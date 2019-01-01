@@ -6,11 +6,11 @@ module.exports.candidateRegister=function(req,res){
     var eventEmitter = new events.EventEmitter();
 
     var user={
-        "username":req.body.name,
-        "password":req.body.password,
-        "email":req.body.email,
-        "telephone":req.body.phone,
-        "cv":req.body.cv,
+        "username":ssn.username,
+        "password":ssn.password,
+        "email":ssn.email,
+        "telephone":ssn.phone,
+        "cv":ssn.cv,
         "is_hr": 0,
         "approved": 0
     }

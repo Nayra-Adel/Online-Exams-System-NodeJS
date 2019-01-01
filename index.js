@@ -86,6 +86,36 @@ app.post("/answers/save", function(req,res){
   return res.send(answers);
 });
 
+app.post("/checkname", function(req,res){
+  console.log('Post name: ' + JSON.stringify(req.body));
+
+  var check;
+  ssn = req.session;
+  ssn.username = req.body.name;
+  ssn.phone = req.body.phone;
+  ssn.email = req.body.email;
+  ssn.password = req.body.pass;
+  ssn.cv = req.body.cv;
+   
+  connection.query('SELECT * FROM user WHERE username = ?',[req.body.name], function (error, results) {
+    if (error) {
+        res.json({
+          status:false,
+          message:'there are some error with query'
+          })  
+
+    }else{
+      if (results.length >0) {
+          check = "true";
+          return res.send(check);
+      }else{
+           check = "false";
+          return res.send(check);       
+      }
+    }
+  });
+});
+
 app.get('/exam', function (req, res) {  
   ssn = req.session;
   if(ssn.email) {
