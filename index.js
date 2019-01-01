@@ -11,11 +11,9 @@ app.use(express.static('public'));
 var authenticateController        =require('./Controller/authenticate');
 var userRegisterController        =require('./Controller/user-register');
 var hrRegisterController          =require('./Controller/hr-register');
-
 var userController                =require('./Controller/userCV');
 var userApprovedCVController      =require('./Controller/approvedCV');
 var userRejectedCVController      =require('./Controller/rejectedCV');
-
 var userExamController            =require('./Controller/userExam');
 var userAnswersController         =require('./Controller/userAnswers');
 var showUserAnswersController     =require('./Controller/showUserAnswers');
@@ -30,7 +28,6 @@ app.use(session({secret:"nayraaaaaaaa", resave:false, saveUninitialized:true}));
 app.get('/register_hr',   function (req, res) { res.render("register_hr.ejs"); }) 
 app.get('/register_user', function (req, res) { res.render("register_user.ejs"); }) 
 app.get('/login',         function (req, res) { res.render("login.ejs"); })  
-
 app.get('/config.js',     function (req, res) { res.render("config.js"); })  
 
 app.get('/See_all_cvs', function (req, res) {  
@@ -76,7 +73,6 @@ app.get('/show_exam', function (req, res) {
 
 app.post("/answers/save", function(req,res){
   console.log('Post answers: ' + JSON.stringify(req.body));
-
   ssn = req.session;
   ssn.answer1 = req.body.answer1;
   ssn.answer2 = req.body.answer2;
@@ -155,9 +151,7 @@ app.get('/User-Home', function (req, res) {
 })  
 
 app.get('/welcome',function(req,res){
-
   req.session.destroy(function(err) {
-
     if(err) { console.log(err); } 
     else { res.render("welcome.ejs"); }
   });

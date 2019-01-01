@@ -1,6 +1,5 @@
 $( document ).ready(function() {
 	
-	// SUBMIT FORM
     $("#register-form").submit(function(event) {
 		// Prevent the form from submitting via the browser.
 		event.preventDefault();
@@ -31,15 +30,10 @@ $( document ).ready(function() {
 				name = checkname;
 
 				if (name == "false"){
-					console.log("nayra"+ name);
-
 					$("#register-done").submit();
 				}
 				else{
-					console.log("laalal");
-					console.log(name);
-					$("#postResultDiv").html("<p>" + 
-					" User name found! change it " + "</p>"); 
+					$("#postResultDiv").html("<p>" + " User name found! change it " + "</p>"); 
 				}
 			},
 			error : function(e) {

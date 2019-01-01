@@ -1,6 +1,5 @@
 $( document ).ready(function() {
 	
-	// SUBMIT FORM
     $("#myform").submit(function(event) {
 		// Prevent the form from submitting via the browser.
 		event.preventDefault();
@@ -26,7 +25,6 @@ $( document ).ready(function() {
     	}   
     	console.log(formData);
 
-    	// DO POST
     	$.ajax({
 			type : "POST",
 			contentType : "application/json",

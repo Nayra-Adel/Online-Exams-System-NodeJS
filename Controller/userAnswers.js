@@ -12,10 +12,6 @@ module.exports.answers=function(req,res){
     a2 = req.session.answer2;
     a3 = req.session.answer3;
 
-    console.log(a1);
-    console.log(a2);
-    console.log(a3);
-
     if (!a1) {a1 = ""}
     if (!a2) {a2 = ""}
     if (!a3) {a3 = ""}
