@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-    "keywords": [
+  "keywords": [
     "NodeJs",
     "Express",
     "Bootstrap",
@@ -19,6 +19,7 @@
     "alphamail": "^1.1.5",
     "body-parser": "^1.18.3",
     "cryptr": "^4.0.2",
+    "diff": "^4.0.1",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-fileupload": "^1.0.0",
