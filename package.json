@@ -21,7 +21,7 @@
     "cryptr": "^4.0.2",
     "diff": "^4.0.1",
     "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-fileupload": "^1.1.9",
     "express-session": "^1.15.6",
     "mysql": "^2.16.0",
