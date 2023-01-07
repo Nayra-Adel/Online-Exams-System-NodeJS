@@ -25,7 +25,7 @@
     "express-fileupload": "^1.1.9",
     "express-session": "^1.15.6",
     "mysql": "^2.16.0",
-    "nodemailer": "^4.7.0",
+    "nodemailer": "^6.6.1",
     "req-flash": "0.0.3",
     "session": "^0.1.0"
   }
